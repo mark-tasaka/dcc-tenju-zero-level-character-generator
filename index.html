@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GitHub Dungeon Crawl Classics Tengu Character Generator</title>
+    
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Mark Tasaka 2017">
+
+
+	<link rel="stylesheet" href="css/dcc_github.css"  />
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+
+
+	</head>
+	
+	
+<body>
+
+
+	<section>
+		
+		<h1>Dungeon Crawl Classics Tengu Character Generator</h1>
+		
+		<p>Welcome to the Launch Page of the Dungeon Crawl Classics Tengu Generator.  The Tengu Character Generator is designed using JavaScript and produce playable characters consistent with Goodman Games’ Dungeon Crawl Classics Pen and Paper Roleplaying System.</p>
+		
+		<p>For more information on the Dungeon Crawl Classics Game System, please visit:</p>
+		
+		<p><a href="http://goodman-games.com/" target="_blank" class="links">http://goodman-games.com/</a></p>
+		
+		<p>To see the generator used in the contents of the web, please visit:</p>
+		
+		<p><a href="http://www.oldschooladventures.org/dcc/homebrew/tengu/" target="_blank" class="links">http://www.oldschooladventures.org/dcc/homebrew/tengu/</a></p>
+		
+		
+		<h2>Tengu Character Generator</h2>
+			
+					
+		<div class="content">
+		
+			<form id="tengu_form" action="" target="_blank">
+			
+			  <select id="level" class="dropdownmenu_npc">
+				<option value="1" selected>Level 1 Tengu</option>
+				<option value="2">Level 2 Tengu</option>
+				<option value="3">Level 3 Tengu</option>
+				<option value="4">Level 4 Tengu</option>
+				<option value="5">Level 5 Tengu</option>
+				<option value="6">Level 6 Tengu</option>
+				<option value="7">Level 7 Tengu</option>
+				<option value="8">Level 8 Tengu</option>
+				<option value="9">Level 9 Tengu</option>
+				<option value="10">Level 10 Tengu</option>
+			  </select>
+			
+
+			
+			<div class="generatorb">
+			<span class="generatorbuttons">
+
+				<input type="submit" value="Generate Character" id="generate_level0_characters"/>
+			</span>
+				
+			<span id="generatorbuttons">
+				<input type="reset"  value="Reset Generator" id="reset__level0_characters"/>
+		
+				</span>
+				</div>
+			
+				</form>
+                </div>
+                
+
+    </section>
+
+
+		
+	<script>
+		document.getElementById("generate_level0_characters").onclick = function() {
+			
+			var level = "1";
+			
+			if(document.getElementById("level").value == 2) {
+				level = "2";
+			}
+			else if(document.getElementById("level").value == 3) {
+				level = "3";
+			}
+			else if(document.getElementById("level").value == 4) {
+				level = "4";
+			}
+			else if(document.getElementById("level").value == 5) {
+				level = "5";
+			}
+			else if(document.getElementById("level").value == 6) {
+				level = "6";
+			}
+			else if(document.getElementById("level").value == 7) {
+				level = "7";
+			}
+			else if(document.getElementById("level").value == 8) {
+				level = "8";
+			}
+			else if(document.getElementById("level").value == 9) {
+				level = "9";
+			}
+			else if(document.getElementById("level").value == 10) {
+				level = "10";
+			}
+			
+			
+			document.getElementById("tengu_form").action = "character/dcc_tengu_" + level + ".html";
+
+		}
+	
+
+	
+	</script>
+        
+
+
+</body>
+    
+</html>

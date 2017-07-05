@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dungeon Crawl Classics Tengu Character Generator</title>
+    
+	<meta charset="UTF-8">
+	<meta name="description" content="Dungeon Crawl Classics tengu Character Generator. Goodman Games.">
+	<meta name="keywords" content="Dungeon Crawl Classics, Goodman Games,HTML5,CSS,JavaScript">
+	<meta name="author" content="Mark Tasaka 2016">
+	<link rel="stylesheet" type="text/css" href="css/dcc_tengu.css">
+	
+</head>
+<body>
+	
+
+	
+   
+  <img id="character_sheet"/>
+   <section>
+    	<p id="name"></p>
+	
+		<span id="strength"></span> <span id="strengthMod"></span>
+		<span id="agility"></span>  <span id="agilityMod"></span>
+		<span id="stamina"></span>  <span id="staminaMod"></span>
+		<span id="personality"></span> <span id="personalityMod"></span>
+		<span id="intelligence"></span> <span id="intelligenceMod"></span>
+		<span id="luck"></span> <span id="luckMod"></span>
+	
+    	<p id="occupation"></p>
+
+	   <p id="luckySignDescription"><span id="luckySignNotes"></span>: <span id="luckyRoll"></span> (Bonus: <span id="luckySignBonus"></span>)</p>
+
+	   <p id="level"></p>
+	   
+	  
+	  <p id="title"></p>
+	   <p id="hitPoints"></p>
+
+		<span id="baseArmourClass"></span>
+	   
+	   <P id="languages"><span id="baseLanguages"></span><span id="bonusLanguages"></span></P>
+	   
+	   
+	   <span id="zeroWeapon"></span>
+	   
+	   <span id="fumbleDie"></span>
+	   <span id="init"></span>
+	   <span id="speed"></span>	   
+	   <span id="critDie"></span>
+	   <span id="critTable"></span>
+	   <span id="actionDie"></span>
+	   <span id="luckDie"></span>
+	   
+	   <span id="melee"></span>	   
+	   <span id="range"></span>
+ 
+	   <span id="ref"></span>
+	   <span id="fort"></span>
+	   <span id="will"></span>
+	   
+	   
+	   <span id="luckRecovery"></span>
+	   <span id="backstab"></span>
+	   <span id="sneak"></span>
+	   <span id="hide"></span>
+	   <span id="pickPocket"></span>
+	   <span id="climb"></span>
+	   <span id="pickLock"></span>
+	   <span id="findTrap"></span>
+	   <span id="disableTrap"></span>
+	   <span id="forgeDocument"></span>
+	   <span id="disguiseSelf"></span>
+	   <span id="readLanguages"></span>
+	   <span id="handlePoison"></span>
+	   <span id="castSpell"></span>
+
+
+	</section>
+	
+
+		
+  <script>
+	  
+	  /*
+	  rollDice (numberOfSides, numberOfDiceRolled, numberOfDiceRemoved, baseValue)
+	  */
+	  	function rollDice(numberOfSides, numberOfDiceRolled, numberOfDiceRemoved, baseValue) {
+		
+		if(numberOfSides === undefined || typeof numberOfSides !== 'number'||numberOfSides <=2 || numberOfSides >=30){
+			numberOfSides = 6;
+		}
+		
+		if(numberOfDiceRolled < 0){
+			numberOfDiceRolled =2;
+		}
+		
+		if(numberOfDiceRemoved === undefined || typeof numberOfDiceRemoved !== 'number'||numberOfDiceRemoved >= numberOfDiceRolled){
+			numberOfDiceRemoved =0;
+		}
+		
+		if(baseValue === undefined || typeof baseValue !== 'number'||baseValue < 0){
+			baseValue = 0;
+		}
+		
+		var numbers = [];
+		
+
+		for(var i = 0; i < numberOfDiceRolled; i++){
+			numbers[i] = Math.floor((Math.random() * 6) + 1);
+		}
+		
+        numbers.sort();
+        
+		var sum = baseValue;
+			
+		for(var i = numberOfDiceRemoved; i < numberOfDiceRolled; i++){
+			sum += numbers[i];
+		}
+			
+		return sum ;
+	}
+
+	  
+	/*
+	 Character() - tengu Character Constructor
+	*/
+	function Character() {
+	
+    var strength = rollDice(6, 3, 0, 0);
+    var agility = rollDice(8, 1, 0, 10);
+    var stamina = rollDice(6, 3, 0, 0);
+   // var stamina = rollDice(0, 0, 0, 3);
+    var	personality = rollDice(6, 3, 0, 0);
+    var	intelligence = rollDice(6, 3, 0, 0);
+    var	luck = rollDice(6, 1, 0, 12);
+	var	occupation = getOccupation();
+	var birthAugur = getLuckySign();
+	var strengthModifier = getStrengthModifier(strength);
+	var staminaModifier = getStaminaModifier(stamina);
+	var agilityModifier = getAgilityModifier(agility);
+	var personalityModifier = getPersonalityModifier(personality);
+	var intelligenceModifier = getIntelligenceModifier(intelligence);
+	var luckModifier = getLuckModifier(luck);
+	var baseAC = getBaseArmourClass(agilityModifier) + adjustAC(birthAugur, luckModifier);
+	var tengu = getTengu();
+
+		var tenguGenerator = {
+			"name": "",
+			"strength": strength,
+			"agility": agility,
+			"stamina": stamina,
+			"personality": personality,
+			"intelligence": intelligence,
+			"luck": luck,
+			"strengthModifier": strengthModifier,
+			"agilityModifier": agilityModifier,
+			"staminaModifier": staminaModifier,
+			"personalityModifier": personalityModifier,
+			"intelligenceModifier": intelligenceModifier,
+			"luckModifier":  luckModifier,
+			"occupation":  occupation.occupation,
+			"luckySign": birthAugur.luckySign,
+			"luckyRoll": birthAugur.luckyRoll,
+			"luckySignBonus": luckModifier,
+			"baseArmourClass": baseAC,
+			"level": tengu.level,
+			"title": tengu.title,
+			"baseLanguages": "Common, Tengu", 
+			"bonusLanguages": getBonusLanguages (intelligenceModifier, birthAugur, luckModifier),
+			"zeroWeapon": occupation.trainedWeapon,
+			"fumbleDie": "d4" + addSign(adjustFumble(birthAugur, luckModifier)),
+			"init": agilityModifier + adjustInit(birthAugur, luckModifier),
+			"speed": 30 + addLuckToSpeed(birthAugur, luckModifier) + "'",
+			"hitPoints": hitPoints (tengu, staminaModifier, hitPointAdjustPerLevel(birthAugur, luckModifier)),
+			"critDie": tengu.critDice + "" + addSign(adjustCrit(birthAugur, luckModifier) + addCritBonus(tengu)),
+			"critTable": tengu.critTable,
+			"actionDie": tengu.actionDice,
+			"luckDie": tengu.luckDie,
+			"melee": tengu.attackBonus + strengthModifier + meleeAdjust(birthAugur, luckModifier),
+			"range": tengu.attackBonus + agilityModifier + rangeAdjust(birthAugur, luckModifier),
+			"ref": tengu.ref + agilityModifier + adjustRef(birthAugur, luckModifier),
+			"fort": tengu.fort + staminaModifier + adjustFort(birthAugur,luckModifier),
+			"will": tengu.will + personalityModifier + adjustWill(birthAugur, luckModifier),
+			"luckRecovery": tengu.luckRecovery,
+			"backstab": tengu.backstab,
+			"sneak": tengu.sneak + agilityModifier,
+			"hide": tengu.hideInShadows + agilityModifier,
+			"pickPocket": tengu.pickPockets + agilityModifier,
+			"climb": tengu.climb + agilityModifier,
+			"pickLock": tengu.pickLock + agilityModifier,
+			"findTrap": tengu.findTrap + intelligenceModifier,
+			"disableTrap": tengu.disableTrap + agilityModifier,
+			"forgeDocument": tengu.forgeDocuments + agilityModifier,
+			"disguiseSelf": tengu.disguiseSelf + personalityModifier,
+			"readLanguages": tengu.readLanguages + intelligenceModifier,
+			"handlePoison": tengu.handlePoison,
+			"castSpell": tengu.castSpellFromScroll + "" + addSign(intelligenceModifier)
+		
+
+		}; 
+		return tenguGenerator;
+	  
+	  }
+	  
+
+    
+     //getStrengthModifier(strength) - returns the Strength Modifier, which is based on the Strength Score
+    
+    function getStrengthModifier(strength){
+        if(strength === undefined || typeof strength !== 'number'|| strength <=2 || strength >=19){
+            //invalid
+            return -3;
+        }
+		if(strength >=4 && strength <=5){
+			return -2;
+		}
+		else if(strength >=6 && strength <=8){
+			return -1;
+		}
+		else if(strength >=9 && strength <=12){
+			return + 0;
+		}
+		else if(strength >=13 && strength <=15){
+			return + 1;
+		}	
+		else if(strength >=16 && strength <=17){
+			return + 2;
+		}		
+		else if(strength ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+
+    
+    // getAgilityModifier(agility) - returns the Agility Modifier, which is based on the Agility Score
+    
+    function getAgilityModifier(agility){
+        if(agility === undefined || typeof agility !== 'number'|| agility <=2 || agility >=19){
+            //invalid
+            return -3;
+        }
+		if(agility >=4 && agility <=5){
+			return -2;
+		}
+		else if(agility >=6 && agility <=8){
+			return -1;
+		}
+		else if(agility >=9 && agility <=12){
+			return 0;
+		}
+		else if(agility >=13 && agility <=15){
+			return 1;
+		}	
+		else if(agility >=16 && agility <=17){
+			return 2;
+		}		
+		else if(agility ==18){
+			return 3;
+		}	
+		return -3;
+	}
+
+    //getStaminaModifier(stamina) - returns the Stamina Modifier, which is based on the Stamina Score
+    function getStaminaModifier(stamina){
+        if(stamina === undefined || typeof stamina !== 'number'|| stamina <=2 || stamina >=19){
+            //invalid
+            return -3;
+        }
+		if(stamina >=4 && stamina <=5){
+			return -2;
+		}
+		else if(stamina >=6 && stamina <=8){
+			return -1;
+		}
+		else if(stamina >=9 && stamina <=12){
+			return + 0;
+		}
+		else if(stamina >=13 && stamina <=15){
+			return + 1;
+		}	
+		else if(stamina >=16 && stamina <=17){
+			return + 2;
+		}		
+		else if(stamina ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+    
+    //getPersonalityModifier(personality) - returns the Personality Modifier, which is based on the Personality Score
+    function getPersonalityModifier(personality){
+        if(personality === undefined || typeof personality !== 'number'|| personality <=2 || personality >=19){
+            //invalid
+            return -3;
+        }
+		if(personality >=4 && personality <=5){
+			return -2;
+		}
+		else if(personality >=6 && personality <=8){
+			return -1;
+		}
+		else if(personality >=9 && personality <=12){
+			return + 0;
+		}
+		else if(personality >=13 && personality <=15){
+			return + 1;
+		}	
+		else if(personality >=16 && personality <=17){
+			return + 2;
+		}		
+		else if(personality ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+    
+    //getIntelligenceModifier(intelligence) - returns the Intelligence Modifier, which is based on the Intelligence Score 
+    function getIntelligenceModifier(intelligence){
+        if(intelligence === undefined || typeof intelligence !== 'number'|| intelligence <=2 || intelligence >=19){
+            //invalid
+            return -3;
+        }
+		if(intelligence >=4 && intelligence <=5){
+			return -2;
+		}
+		else if(intelligence >=6 && intelligence <=8){
+			return -1;
+		}
+		else if(intelligence >=9 && intelligence <=12){
+			return + 0;
+		}
+		else if(intelligence >=13 && intelligence <=15){
+			return + 1;
+		}	
+		else if(intelligence >=16 && intelligence <=17){
+			return + 2;
+		}		
+		else if(intelligence ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+    
+    // getLuckModifier(luck) - returns the luck Modifier, which is based on the luck Score
+    
+    function getLuckModifier(luck){
+        if(luck === undefined || typeof luck !== 'number'|| luck <=2 || luck >=19){
+            //invalid
+            return -3;
+        }
+		if(luck >=4 && luck <=5){
+			return -2;
+		}
+		else if(luck >=6 && luck <=8){
+			return -1;
+		}
+		else if(luck >=9 && luck <=12){
+			return + 0;
+		}
+		else if(luck >=13 && luck <=15){
+			return + 1;
+		}	
+		else if(luck >=16 && luck <=17){
+			return + 2;
+		}		
+		else if(luck ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+	  
+ 
+//  getOccupation() - returns the Randomly Generated Occupation
+function getOccupation(){
+	var occupations = [
+		
+		{"occupation": "Tengu vagabond", "race": "Tengu", "trainedWeapon": "Stick (as club)", "damage": "1d4", "tradeGoods": "Bundle of ratty clothes"},
+		{"occupation": "Tengu urchin", "race": "Tengu", "trainedWeapon": "Stick (as club)", "damage": "1d4", "tradeGoods": "Begging bowl"},
+		{"occupation": "Tengu tea maker", "race": "Tengu", "trainedWeapon": "Knife (as dagger)", "damage": "1d4", "tradeGoods": "Jar of tea leaves"},
+		{"occupation": "Tengu gambler", "race": "Tengu", "trainedWeapon": "Dagger", "damage": "1d4", "tradeGoods": "Playing cards"},
+		{"occupation": "Tengu sake taster", "race": "Tengu", "trainedWeapon": "Wakazashi (short sword)", "damage": "1d6", "tradeGoods": "3 bottles of sake"},
+		{"occupation": "Tengu fisherman", "race": "Tengu", "trainedWeapon": "Knife (as dagger)", "damage": "1d4", "tradeGoods": "Fishing rod"},
+		{"occupation": "Tengu potter", "race": "Tengu", "trainedWeapon": "Staff", "damage": "1d4", "tradeGoods": "Clay pot"},
+		{"occupation": "Tengu tea merchant", "race": "Tengu", "trainedWeapon": "Dagger", "damage": "1d4", "tradeGoods": "Sack filled with tea leaves"},
+		{"occupation": "Tengu puppet maker", "race": "Tengu", "trainedWeapon": "Staff", "damage": "1d4", "tradeGoods": "3 puppets"},
+		{"occupation": "Tengu silk merchant", "race": "Tengu", "trainedWeapon": "Staff", "damage": "1d4", "tradeGoods": "Silk, 3 yards"}
+		];
+		return occupations[Math.floor(Math.random() * 10)]; 
+}
+	
+
+	  
+//getLuckySign() - returns a randomly generated Lucky Sign 
+function getLuckySign(){
+    var luckySign = [
+        {"luckySign": "Harsh winter", "luckyRoll": "All attack rolls"},
+        {"luckySign": "The bull", "luckyRoll": "Melee attack rolls"},
+        {"luckySign": "Fortunate date", "luckyRoll": "Missle fire attack rolls"},
+        {"luckySign": "Raised by wolves", "luckyRoll": "Unarmed attack rolls"},
+        {"luckySign": "Conceived on horseback", "luckyRoll": "Mounted attack rolls"},
+        {"luckySign": "Born on the battlefield", "luckyRoll": "Damage rolls"},
+        {"luckySign": "Path of the bear", "luckyRoll": "Melee damage rolls"},
+        {"luckySign": "Hawkeye", "luckyRoll": "Missle damage rolls"},
+        {"luckySign": "Pack hunter", "luckyRoll": "Attack and damage rolls for 0-level starting weapon"},
+        {"luckySign": "Born under the loom", "luckyRoll": "Skill checks"},
+        {"luckySign": "Fox's cunning", "luckyRoll": "Find/disable traps"},
+        {"luckySign": "Four-leafed clover", "luckyRoll": "Find secret doors"},
+       // {"luckySign": "Seventh son", "luckyRoll": "Spell checks"},
+        //{"luckySign": "The raging storm", "luckyRoll": "Spell damage"},
+        //{"luckySign": "Righteous heart", "luckyRoll": "Turn unholy checks"},
+        //{"luckySign": "Surived the plague", "luckyRoll": "Magical healing"},
+        {"luckySign": "Luck sign", "luckyRoll": "Saving throws"},
+        {"luckySign": "Guardian angel", "luckyRoll": "Saving throws to escape traps"},
+        {"luckySign": "Survived a spider bite", "luckyRoll": "Saving throws against poison"},
+        {"luckySign": "Struck by Lightning", "luckyRoll": "Reflex saving throws"},
+        {"luckySign": "Lived through famine", "luckyRoll": "Fortitude saving throws"},
+        {"luckySign": "Resisted temptation", "luckyRoll": "Will saving throws"},
+        {"luckySign": "Charmed house", "luckyRoll": "Armour class"},
+        {"luckySign": "Speed of the Cobra", "luckyRoll": "Initiative"},
+        {"luckySign": "Bountiful Harvest", "luckyRoll": "Hits points/each level"},
+        {"luckySign": "Warrior's arm", "luckyRoll": "Critical hit tables"},
+        //{"luckySign": "Unholy house", "luckyRoll": "Corruption rolls"},
+        {"luckySign": "The Broken Star", "luckyRoll": "Fumbles"},
+        {"luckySign": "Birdsong", "luckyRoll": "Number of Languages"},
+        {"luckySign": "Wild child", "luckyRoll": "Speed"}
+    ];
+	
+     return luckySign[Math.floor(Math.random() * 25)]; 
+}
+
+
+/*
+addBonusLanguages() - returns Randomly selected WARRIOR Bonus Languages
+*/
+function addBonusLanguages() {
+	var bonusLanguages = [
+		{"language": "Alignment Tongue"},
+		{"language": "Dwarf"},
+		{"language": "Elf"},
+		{"language": "Halfling"},
+		{"language": "Gnome"},
+		{"language": "Bugbear"},
+		{"language": "Goblin"},
+		{"language": "Gnoll"},
+		{"language": "Hobgoblin"},
+		{"language": "Kobold"},
+		{"language": "Lizardman"},
+		{"language": "Demonic"},
+		{"language": "Serpent-man"},
+		{"language": "Doppelganger"},
+		{"language": "Dragon"},
+		{"language": "Troglodyte"},
+		{"language": "Giant"},
+		{"language": "Harpy"},
+		{"language": "Pixie"},
+		{"language": "Undercommon"}
+			];
+    return bonusLanguages[Math.floor(Math.random() * 20)]; 
+}
+
+/*
+gettengu 
+*/
+function getTengu() {
+	var tengu = [
+		
+
+		{"level": 1,
+		 "alignment": "",
+		 "title": "Rascal",
+		 "hd": 1,
+		 "actionDice": "1d20",
+		 "critDice": "1d10",
+		 "critTable": "II",
+		 "luckDie": "d3",
+		 "attackBonus": 0,
+		 "ref": 1,
+		 "fort": 1,
+		 "will": 0,
+		 "luckRecovery": 1,
+		 "backstab": 0,
+		 "sneak": 3,
+		 "hideInShadows": 1,
+		 "pickPockets": 3,
+		 "climb": 3,
+		 "pickLock": 1,
+		 "findTrap": 1,
+		 "disableTrap": 1,
+		 "forgeDocuments": 3,
+		 "disguiseSelf": 0,
+		 "readLanguages": 0,
+		 "handlePoison": 0,
+		 "castSpellFromScroll": "d12"	 
+		},
+		
+		{"level": 2,
+		 "alignment": "",
+		 "title": "Trickster",
+		 "hd": 2,
+		 "actionDice": "1d20",
+		 "critDice": "1d12",
+		 "critTable": "II",
+		 "luckDie": "d4",
+		 "attackBonus": 1,
+		 "ref": 1,
+		 "fort": 1,
+		 "will": 0,
+		 "luckRecovery": 1,
+		 "backstab": 1,
+		 "sneak": 5,
+		 "hideInShadows": 3,
+		 "pickPockets": 5,
+		 "climb": 5,
+		 "pickLock": 3,
+		 "findTrap": 3,
+		 "disableTrap": 3,
+		 "forgeDocuments": 5,
+		 "disguiseSelf": 0,
+		 "readLanguages": 1,
+		 "handlePoison": 0,
+		 "castSpellFromScroll": "d12"	 
+		},
+		
+		{"level": 3,
+		 "alignment": "",
+		 "title": "Mischief-maker",
+		 "hd": 3,
+		 "actionDice": "1d20",
+		 "critDice": "1d14",
+		 "critTable": "II",
+		 "luckDie": "d5",
+		 "attackBonus": 2,
+		 "ref": 2,
+		 "fort": 1,
+		 "will": 1,
+		 "luckRecovery": 2,
+		 "backstab": 2,
+		 "sneak": 7,
+		 "hideInShadows": 5,
+		 "pickPockets": 7,
+		 "climb": 7,
+		 "pickLock": 5,
+		 "findTrap": 5,
+		 "disableTrap": 5,
+		 "forgeDocuments": 7,
+		 "disguiseSelf": 1,
+		 "readLanguages": 2,
+		 "handlePoison": 1,
+		 "castSpellFromScroll": "d14"	 
+		},
+		
+		
+		{"level": 4,
+		 "alignment": "",
+		 "title": "Sneak",
+		 "hd": 4,
+		 "actionDice": "1d20",
+		 "critDice": "1d16",
+		 "critTable": "II",
+		 "luckDie": "d6",
+		 "attackBonus": 3,
+		 "ref": 2,
+		 "fort": 2,
+		 "will": 1,
+		 "luckRecovery": 2,
+		 "backstab": 3,
+		 "sneak": 8,
+		 "hideInShadows": 7,
+		 "pickPockets": 8,
+		 "climb": 8,
+		 "pickLock": 7,
+		 "findTrap": 7,
+		 "disableTrap": 7,
+		 "forgeDocuments": 8,
+		 "disguiseSelf": 2,
+		 "readLanguages": 3,
+		 "handlePoison": 2,
+		 "castSpellFromScroll": "d14"	 
+		},
+		
+		{"level": 5,
+		 "alignment": "",
+		 "title": "Rogue",
+		 "hd": 5,
+		 "actionDice": "1d20",
+		 "critDice": "1d20",
+		 "critTable": "II",
+		 "luckDie": "d7",
+		 "attackBonus": 3,
+		 "ref": 3,
+		 "fort": 2,
+		 "will": 1,
+		 "luckRecovery": 3,
+		 "backstab": 4,
+		 "sneak": 9,
+		 "hideInShadows": 8,
+		 "pickPockets": 9,
+		 "climb": 9,
+		 "pickLock": 8,
+		 "findTrap": 8,
+		 "disableTrap": 8,
+		 "forgeDocuments": 9,
+		 "disguiseSelf": 3,
+		 "readLanguages": 4,
+		 "handlePoison": 3,
+		 "castSpellFromScroll": "d16"	 
+		},
+		
+		
+		{"level": 6,
+		 "alignment": "",
+		 "title": "Rogue",
+		 "hd": 6,
+		 "actionDice": "1d20+1d14",
+		 "critDice": "1d24",
+		 "critTable": "II",
+		 "luckDie": "d8",
+		 "attackBonus": 4,
+		 "ref": 4,
+		 "fort": 2,
+		 "will": 2,
+		 "luckRecovery": 3,
+		 "backstab": 5,
+		 "sneak": 11,
+		 "hideInShadows": 9,
+		 "pickPockets": 11,
+		 "climb": 11,
+		 "pickLock": 9,
+		 "findTrap": 9,
+		 "disableTrap": 9,
+		 "forgeDocuments": 11,
+		 "disguiseSelf": 4,
+		 "readLanguages": 5,
+		 "handlePoison": 4,
+		 "castSpellFromScroll": "d16"	 
+		},
+		
+		{"level": 7,
+		 "alignment": "",
+		 "title": "Rogue",
+		 "hd": 7,
+		 "actionDice": "1d20+1d16",
+		 "critDice": "1d30",
+		 "critTable": "II",
+		 "luckDie": "d10",
+		 "attackBonus": 5,
+		 "ref": 4,
+		 "fort": 3,
+		 "will": 2,
+		 "luckRecovery": 4,
+		 "backstab": 6,
+		 "sneak": 12,
+		 "hideInShadows": 10,
+		 "pickPockets": 12,
+		 "climb": 12,
+		 "pickLock": 10,
+		 "findTrap": 10,
+		 "disableTrap": 10,
+		 "forgeDocuments": 12,
+		 "disguiseSelf": 5,
+		 "readLanguages": 6,
+		 "handlePoison": 5,
+		 "castSpellFromScroll": "d20"	 
+		},
+
+		
+		{"level": 8,
+		 "alignment": "",
+		 "title": "Rogue",
+		 "hd": 8,
+		 "actionDice": "1d20+1d20",
+		 "critDice": "1d30",
+		 "critTable": "II",
+		 "luckDie": "d12",
+		 "attackBonus": 5,
+		 "ref": 5,
+		 "fort": 3,
+		 "will": 2,
+		 "luckRecovery": 4,
+		 "backstab": 7,
+		 "sneak": 13,
+		 "hideInShadows": 11,
+		 "pickPockets": 13,
+		 "climb": 13,
+		 "pickLock": 11,
+		 "findTrap": 11,
+		 "disableTrap": 11,
+		 "forgeDocuments": 13,
+		 "disguiseSelf": 6,
+		 "readLanguages": 7,
+		 "handlePoison": 6,
+		 "castSpellFromScroll": "d20"	 
+		},
+			
+		
+		{"level": 9,
+		 "alignment": "",
+		 "title": "Rogue",
+		 "hd": 9,
+		 "actionDice": "1d20+1d20",
+		 "critDice": "1d30",
+		 "critTable": "II",
+		 "luckDie": "d14",
+		 "attackBonus": 6,
+		 "ref": 5,
+		 "fort": 3,
+		 "will": 3,
+		 "luckRecovery": 5,
+		 "backstab": 8,
+		 "sneak": 14,
+		 "hideInShadows": 12,
+		 "pickPockets": 14,
+		 "climb": 14,
+		 "pickLock": 12,
+		 "findTrap": 12,
+		 "disableTrap": 12,
+		 "forgeDocuments": 14,
+		 "disguiseSelf": 7,
+		 "readLanguages": 8,
+		 "handlePoison": 7,
+		 "castSpellFromScroll": "d20"	 
+		},
+			
+		{"level": 10,
+		 "alignment": "",
+		 "title": "Rogue",
+		 "hd": 10,
+		 "actionDice": "1d20+1d20",
+		 "critDice": "1d30",
+		 "critTable": "II",
+		 "luckDie": "d16",
+		 "attackBonus": 7,
+		 "ref": 6,
+		 "fort": 4,
+		 "will": 3,
+		 "luckRecovery": 5,
+		 "backstab": 9,
+		 "sneak": 15,
+		 "hideInShadows": 13,
+		 "pickPockets": 15,
+		 "climb": 15,
+		 "pickLock": 13,
+		 "findTrap": 13,
+		 "disableTrap": 13,
+		 "forgeDocuments": 15,
+		 "disguiseSelf": 8,
+		 "readLanguages": 9,
+		 "handlePoison": 8,
+		 "castSpellFromScroll": "d20"	 
+		}
+		
+		
+		];
+	
+		return tengu[7];
+}
+	  
+/*
+hitPointAdjustPerLevel (luckySign, luckModifier)- returns the additional/minus hit points
+the character received per level from their Stamina modifier and whether they have the Lucky Sign "Bountiful Harvest".
+*/
+function hitPointAdjustPerLevel (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign != undefined && luckySign.luckySign === "Bountiful Harvest"){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+	  
+// getBaseArmourClass(agilityModifier)- returns the base armour class of the character
+function getBaseArmourClass(agilityModifier){
+	var armourClass = 10;
+	baseArmourClass = armourClass + agilityModifier;
+	return baseArmourClass;
+}	  
+
+
+function addModifierSign (modifier) {
+	if(modifier >= 0 ) {
+		return "+" + modifier;
+	}
+	else {
+		return modifier;
+	}
+}
+	  
+/*addSign (modifier) Adds a + sign to value if value is 1 or greater.  If value is 0, then a empty String "" is returned.
+*/
+function addSign (modifier) {
+	if(modifier > 0 ) {
+		return "+" + modifier;
+	}
+	else if(modifier === 0) {
+		return "";
+	}
+	else {
+		return modifier;
+	}
+}
+	
+	  
+/*
+getBonusLanguages() returns the bonus languages that a character may have due to high intelligence or the Lucky Sign of Bird Song.  A for loop is used to prevent duplicates of languages.
+*/
+function getBonusLanguages (intelligenceModifier, luckySign, luckModifier) {
+	var bonusLanguages = 0;
+	if(bonusLanguages  != undefined && typeof bonusLanguages === 'number') {
+		bonusLanguages = intelligenceModifier;
+	}
+	else {
+		return "";
+	}
+	
+	if(luckySign != undefined && luckySign.luckySign === "Birdsong") {
+		bonusLanguages += luckModifier;
+	}
+	
+	if(bonusLanguages <=0) {
+		return "";
+	}
+	var result = ", " + addBonusLanguages().language, newLanguage = "";
+	
+	// loop
+	for(var i = 1; i < bonusLanguages; i++){
+		// 1) get a random lang
+		newLanguage = addBonusLanguages().language;
+		// 2) check the new lang is not repeative
+		if(result.indexOf(newLanguage) != -1){
+			i--;
+			// if yes continue;
+			continue;
+		} else{
+			// if not, add the new lang into the result
+			result += ", " + newLanguage;
+		}
+
+	}
+	return result;
+}
+	  
+/*
+meleeAdjust (luckySign, luckModifier) - adds bonus/penality to Melee attack based on whether the character possesses specific Lucky Signs
+*/
+function meleeAdjust (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Harsh winter"){
+        adjust = luckModifier;
+     }
+	else if (luckySign.luckySign != undefined && luckySign.luckySign === "The bull") {
+		adjust = luckModifier;
+	}
+	return adjust;
+}
+
+/*
+rangeAdjust (luckySign, luckModifier) - adds bonus/penality to Range attack based on whether the character possesses specific Lucky Signs
+*/	  
+function rangeAdjust (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Harsh winter" || luckySign.luckySign === "Fortunate date")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+
+/*
+adjustRef (luckySign, luckModifier) - add bonus/penality to Saving Throw based on Lucky Sign
+*/
+function adjustRef (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Luck sign" || luckySign.luckySign === "Struck by Lightning")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+	 
+/*
+adjustFort (luckySign, luckModifier) - add bonus/penality to Saving Throw based on Lucky Sign
+*/
+function adjustFort (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Luck sign" || luckySign.luckySign === "Lived through famine")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+	  
+/*
+ addLuckToSpeed (luckySign, luckModifier) adds bonuses to the character's speed if they have a positive Luck Modifier and the Lucky Sign of Wild Child
+*/
+function addLuckToSpeed (luckySign, luckModifier) {
+	var addSpeed = 0;
+	if (luckySign.luckySign != undefined && luckySign.luckySign === "Wild child" && luckModifier == 1){
+		addSpeed = 5;
+	}
+	else if (luckySign.luckySign != undefined && luckySign.luckySign === "Wild child" && luckModifier == 2){
+		addSpeed = 10;
+	}
+	else if (luckySign.luckySign != undefined && luckySign.luckySign === "Wild child" && luckModifier == 3){
+		addSpeed = 15;
+	}
+	return addSpeed;
+}
+	  
+/*
+adjustWill (luckySign, luckModifier) - add bonus/penality to Saving Throw based on Lucky Sign
+*/
+function adjustWill (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Luck sign" || luckySign.luckySign === "Resisted temptation")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	 
+	  
+/*
+adjustInit (luckySign, luckModifier) - add bonus/penality to Initiative based on Lucky Sign
+*/
+function adjustInit (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Speed of the Cobra"){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	
+
+	  
+/*
+adjustAC (luckySign, luckModifier) - add bonus/penality to AC based on Lucky Sign
+*/
+function adjustAC (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Charmed house"){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	
+	  
+/*
+adjustCrit (luckySign, luckModifier) - add bonus/penality to Crit based on Lucky Sign
+*/
+function adjustCrit (luckySign, luckModifier) {
+   var adjust = luckModifier * 1;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Warrior's arm"){
+        adjust = luckModifier * 2;
+     }
+	return adjust;
+}	
+	  
+/*
+adjustFumble (luckySign, luckModifier) - add bonus/penality to Fumble based on Lucky Sign
+*/
+function adjustFumble  (luckySign, luckModifier) {
+   var adjust = luckModifier * -1;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "The Broken Star"){
+        adjust = luckModifier * -2;
+     }
+	return adjust;
+}	
+
+	  /*
+adjustMeleeDamage  (luckySign, luckModifier) - add bonus/penality to Melee Damage based on Lucky Sign
+*/
+function adjustMeleeDamage (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Born on the battlefield" || luckySign.luckySign === "Path of the bear")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	
+
+	  /*
+adjustRangeDamage  (luckySign, luckModifier) - add bonus/penality to Melee Damage based on Lucky Sign
+*/
+function adjustRangeDamage (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Born on the battlefield" || luckySign.luckySign === "Hawkeye")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+  
+/*
+getHitsPoints (tengu, add1, add2) - retreives the number of hit points that the tengu will have based on their level (tengu), stamina modifier (add1) and Lucky Sign (add2)
+*/
+function hitPoints (tengu, add1, add2) {
+	var hd = tengu.hd;
+	var level = tengu.level;
+	var hitPoints = 0;
+	var zeroLevelHitPoints = Math.floor((Math.random() * 4) + 1) + add1 + add2;
+	var hitPointsEachLevel = Math.floor((Math.random() * 6) + 1) + add1 + add2;
+	
+	if (level === 1) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel;
+		if (hitPoints <= 3) {
+			hitPoints = 4;
+		}
+	}	
+	else if (level === 2) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 7) {
+			hitPoints = 8;
+		}
+	}
+	else if (level === 3) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 9) {
+			hitPoints = 10;
+		}
+	}
+	else if (level === 4) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 13) {
+			hitPoints = 14;
+		}
+	}
+	else if (level === 5) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel
+		 + hitPointsEachLevel;
+		if (hitPoints <= 15) {
+			hitPoints = 16;
+		}
+	}
+	else if (level === 6) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel
+		 + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 19) {
+			hitPoints = 20;
+		}
+	}
+	else if (level === 7) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel
+		 + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 22) {
+			hitPoints = 23;
+		}
+	}
+	else if (level === 8) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel
+		 + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 25) {
+			hitPoints = 26;
+		}
+	}
+	else if (level === 9) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel
+		 + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 28) {
+			hitPoints = 29;
+		}
+	}
+	else if (level === 10) {
+		hitPoints = zeroLevelHitPoints + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel
+		 + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel + hitPointsEachLevel;
+		if (hitPoints <= 31) {
+			hitPoints = 32;
+		}
+	}
+	return hitPoints;
+}	  
+	  
+
+
+/*
+addCritBonus (tengu) - at bonuses to the tengu's Critical Hits when the tengu is at levels 8 (+2), 9 (+4_) and 10 (+6).  The bonuses are combined with the LuckyModifier value that is added to the Crit Die.
+*/
+function addCritBonus (tengu) {
+	var critBonus = 0;
+	if (tengu.level === 8) {
+		critBonus = 2;
+	}
+	else if (tengu.level === 9) {
+		critBonus = 4;
+	}
+	else if (tengu.level === 10) {
+		critBonus = 6;
+	}
+	return critBonus;
+}
+  
+        var imgData = "images/dcc_tengu.png";
+        document.getElementById("character_sheet").src = imgData;
+
+	  var data = Character();
+		 
+		  
+        document.getElementById("name").innerHTML = data.name;
+	  
+        document.getElementById("title").innerHTML = data.title;  
+	  
+        document.getElementById("strength").innerHTML = data.strength;  
+        document.getElementById("agility").innerHTML = data.agility;  
+        document.getElementById("stamina").innerHTML = data.stamina;  
+        document.getElementById("personality").innerHTML = data.personality;   
+        document.getElementById("intelligence").innerHTML = data.intelligence;  
+        document.getElementById("luck").innerHTML = data.luck;       
+	   
+	   
+        document.getElementById("strengthMod").innerHTML = addModifierSign(data.strengthModifier);  
+        document.getElementById("agilityMod").innerHTML = addModifierSign(data.agilityModifier);  
+        document.getElementById("staminaMod").innerHTML = addModifierSign(data.staminaModifier);  
+        document.getElementById("personalityMod").innerHTML = addModifierSign(data.personalityModifier);   
+        document.getElementById("intelligenceMod").innerHTML = addModifierSign(data.intelligenceModifier);  
+        document.getElementById("luckMod").innerHTML = addModifierSign(data.luckModifier);   
+		
+	
+        document.getElementById("occupation").innerHTML = data.occupation; 
+	   
+	  
+        document.getElementById("luckySignNotes").innerHTML = data.luckySign; 
+        document.getElementById("luckyRoll").innerHTML = data.luckyRoll;  
+        document.getElementById("luckySignBonus").innerHTML = addModifierSign(data.luckySignBonus); 
+        document.getElementById("level").innerHTML = data.level;
+	  
+
+        document.getElementById("hitPoints").innerHTML = data.hitPoints;  
+
+        document.getElementById("baseArmourClass").innerHTML = data.baseArmourClass; 
+        document.getElementById("baseLanguages").innerHTML = data.baseLanguages; 
+        document.getElementById("bonusLanguages").innerHTML = data.bonusLanguages; 
+	  
+	    document.getElementById("zeroWeapon").innerHTML =data.zeroWeapon;
+	    document.getElementById("fumbleDie").innerHTML = data.fumbleDie; 
+	    document.getElementById("init").innerHTML = addModifierSign(data.init); 
+	    document.getElementById("speed").innerHTML = data.speed; 
+	
+	    document.getElementById("critDie").innerHTML = data.critDie; 
+	    document.getElementById("critTable").innerHTML = data.critTable; 
+	    document.getElementById("actionDie").innerHTML = data.actionDie; 
+	    document.getElementById("luckDie").innerHTML = data.luckDie; 
+	  	document.getElementById("melee").innerHTML = addModifierSign(data.melee); 
+	    document.getElementById("range").innerHTML = addModifierSign(data.range); 
+	    document.getElementById("ref").innerHTML = addModifierSign(data.ref); 
+	    document.getElementById("fort").innerHTML = addModifierSign(data.fort); 
+	    document.getElementById("will").innerHTML = addModifierSign(data.will); 
+
+	    document.getElementById("luckRecovery").innerHTML = data.luckRecovery; 
+	  	document.getElementById("backstab").innerHTML = addModifierSign(data.backstab); 
+	  	document.getElementById("sneak").innerHTML = addModifierSign(data.sneak);  
+	  	document.getElementById("hide").innerHTML = addModifierSign(data.hide); 
+	  	document.getElementById("pickPocket").innerHTML = addModifierSign(data.pickPocket); 
+	  	document.getElementById("climb").innerHTML = addModifierSign(data.climb); 
+	  	document.getElementById("pickLock").innerHTML = addModifierSign(data.pickLock); 
+	  	document.getElementById("findTrap").innerHTML = addModifierSign(data.findTrap); 
+	  	document.getElementById("disableTrap").innerHTML = addModifierSign(data.disableTrap); 
+	  	document.getElementById("forgeDocument").innerHTML = addModifierSign(data.forgeDocument); 
+	  	document.getElementById("disguiseSelf").innerHTML = addModifierSign(data.disguiseSelf); 
+	  	document.getElementById("readLanguages").innerHTML = addModifierSign(data.readLanguages); 
+	  	document.getElementById("handlePoison").innerHTML = addModifierSign(data.handlePoison); 
+	    document.getElementById("castSpell").innerHTML = data.castSpell; 
+
+  </script>
+		
+	
+    
+</body>
+</html>
