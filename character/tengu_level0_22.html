@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dungeon Crawl Classics Zero Level Tengu Character Generator</title>
+ 
+	<meta charset="UTF-8">
+	<meta name="description" content="Dungeon Crawl Classics Zero Level Character Generator. Goodman Games.">
+	<meta name="keywords" content="Dungeon Crawl Classics, Goodman Games,HTML5,CSS,JavaScript">
+	<meta name="author" content="Mark Tasaka 2016">
+		
+
+	<link rel="stylesheet" type="text/css" href="css/dcc_four_sheet.css">
+</head>
+<body>
+	
+
+  <img id="character_sheet"/>
+   <section>
+	   <aside id="topleft">
+    	<p id="name0"></p>
+		<span id="strength0"></span> <span id="strengthMod0"></span>
+		<span id="agility0"></span>  <span id="agilityMod0"></span>
+		<span id="stamina0"></span>  <span id="staminaMod0"></span>
+		<span id="personality0"></span> <span id="personalityMod0"></span>
+		<span id="intelligence0"></span> <span id="intelligenceMod0"></span>
+		<span id="luck0"></span> <span id="luckMod0"></span>
+		   
+		<p id="occupation0"></p>
+		   
+		<span id="trainedWeapon0"></span> 
+		<span id="trainedWeaponDamage0"></span>
+		<p id="tradeGoods0"></p>
+		<p id="startingEquipment0"></p>   
+		
+		<span id="luckySignBig0"></span>
+		   <span id="LuckySignBonus0"></span>
+		<p id="birthAugur0">Lucky Sign: <span id="luckySign0"></span> (<span id="luckyRoll0"></span>)</p>
+		
+		<span id="hitPoints0"></span> 
+		  
+		   <span id="modifiedArmourClass0"></span> <span id="baseArmourClass0"></span>
+		
+		<p id="armour0"></p>
+		   
+		<p id="languages0">Languages: <span id="baseLanguages0"></span><span id="bonusLanguages0"></span></p>
+		   
+		<span id="fumbleDie0"></span>
+		<span id="critDie0"></span>
+		<span id="critTable0"></span>
+		   
+		   
+		<span id="melee0"></span>
+		 <span id="range0"></span>
+		
+		 <span id="speed0"></span>
+		
+		<p id="animalCharacter0"><span id="animal0"></span><span id="farmAnimal0"></span></p>
+		   
+		   <span id="ref0"></span>
+		   <span id="fort0"></span>
+		   <span id="will0"></span>
+		   
+		   <span id="init0"></span>
+		   
+		   
+		   <span id="wealth0"></span>
+		   <span id="raceAbilities0"></span>
+		   
+		   <span id="dieRollMethod0"></span>
+		   
+		</aside>
+
+		
+	   <aside id="topright">
+		<p id="name1"></p>
+		<span id="strength1"></span> <span id="strengthMod1"></span>
+		<span id="agility1"></span>  <span id="agilityMod1"></span>
+		<span id="stamina1"></span>  <span id="staminaMod1"></span>
+		<span id="personality1"></span> <span id="personalityMod1"></span>
+		<span id="intelligence1"></span> <span id="intelligenceMod1"></span>
+		<span id="luck1"></span> <span id="luckMod1"></span>
+		   
+		<p id="occupation1"></p>
+		   
+		<span id="trainedWeapon1"></span> 
+		<span id="trainedWeaponDamage1"></span>
+		<p id="tradeGoods1"></p>
+		<p id="startingEquipment1"></p>   
+		
+		<span id="luckySignBig1"></span>
+		   <span id="LuckySignBonus1"></span>
+		<p id="birthAugur1">Lucky Sign: <span id="luckySign1"></span> (<span id="luckyRoll1"></span>)</p>
+		
+		<span id="hitPoints1"></span> 
+		  
+		   <span id="modifiedArmourClass1"></span> <span id="baseArmourClass1"></span>
+		
+		<p id="armour1"></p>
+		   
+		<p id="languages1">Languages: <span id="baseLanguages1"></span><span id="bonusLanguages1"></span></p>
+		   
+		<span id="fumbleDie1"></span>
+		<span id="critDie1"></span>
+		<span id="critTable1"></span>
+		   
+		   
+		<span id="melee1"></span>
+		 <span id="range1"></span>
+		
+		 <span id="speed1"></span>
+		
+		<p id="animalCharacter1"><span id="animal1"></span><span id="farmAnimal1"></span></p>
+		   
+		   <span id="ref1"></span>
+		   <span id="fort1"></span>
+		   <span id="will1"></span>
+		   
+		   <span id="init1"></span>
+		   
+		   
+		   <span id="wealth1"></span>
+		   <span id="raceAbilities1"></span>
+		   
+		   <span id="dieRollMethod1"></span>
+	   </aside>
+	   
+	   	   <aside id="bottomleft">
+		<p id="name2"></p>
+		<span id="strength2"></span> <span id="strengthMod2"></span>
+		<span id="agility2"></span>  <span id="agilityMod2"></span>
+		<span id="stamina2"></span>  <span id="staminaMod2"></span>
+		<span id="personality2"></span> <span id="personalityMod2"></span>
+		<span id="intelligence2"></span> <span id="intelligenceMod2"></span>
+		<span id="luck2"></span> <span id="luckMod2"></span>
+		   
+		<p id="occupation2"></p>
+		   
+		<span id="trainedWeapon2"></span> 
+		<span id="trainedWeaponDamage2"></span>
+		<p id="tradeGoods2"></p>
+		<p id="startingEquipment2"></p>   
+		
+		<span id="luckySignBig2"></span>
+		   <span id="LuckySignBonus2"></span>
+		<p id="birthAugur2">Lucky Sign: <span id="luckySign2"></span> (<span id="luckyRoll2"></span>)</p>
+		
+		<span id="hitPoints2"></span> 
+		  
+		   <span id="modifiedArmourClass2"></span> <span id="baseArmourClass2"></span>
+		
+		<p id="armour2"></p>
+		   
+		<p id="languages2">Languages: <span id="baseLanguages2"></span><span id="bonusLanguages2"></span></p>
+		   
+		<span id="fumbleDie2"></span>
+		<span id="critDie2"></span>
+		<span id="critTable2"></span>
+		   
+		   
+		<span id="melee2"></span>
+		 <span id="range2"></span>
+		
+		 <span id="speed2"></span>
+		
+		<p id="animalCharacter2"><span id="animal2"></span><span id="farmAnimal2"></span></p>
+		   
+		   <span id="ref2"></span>
+		   <span id="fort2"></span>
+		   <span id="will2"></span>
+		   
+		   <span id="init2"></span>
+		   
+		   
+		   <span id="wealth2"></span>
+		   <span id="raceAbilities2"></span>
+		   
+		   <span id="dieRollMethod2"></span>
+	   </aside>
+	   
+	   	   
+	   	<aside id="bottomright">
+		<p id="name3"></p>
+		<span id="strength3"></span> <span id="strengthMod3"></span>
+		<span id="agility3"></span>  <span id="agilityMod3"></span>
+		<span id="stamina3"></span>  <span id="staminaMod3"></span>
+		<span id="personality3"></span> <span id="personalityMod3"></span>
+		<span id="intelligence3"></span> <span id="intelligenceMod3"></span>
+		<span id="luck3"></span> <span id="luckMod3"></span>
+		   
+		<p id="occupation3"></p>
+		   
+		<span id="trainedWeapon3"></span> 
+		<span id="trainedWeaponDamage3"></span>
+		<p id="tradeGoods3"></p>
+		<p id="startingEquipment3"></p>   
+		
+		<span id="luckySignBig3"></span>
+		   <span id="LuckySignBonus3"></span>
+		<p id="birthAugur3">Lucky Sign: <span id="luckySign3"></span> (<span id="luckyRoll3"></span>)</p>
+		
+		<span id="hitPoints3"></span> 
+		  
+		   <span id="modifiedArmourClass3"></span> <span id="baseArmourClass3"></span>
+		
+		<p id="armour3"></p>
+		   
+		<p id="languages3">Languages: <span id="baseLanguages3"></span><span id="bonusLanguages3"></span></p>
+		   
+		<span id="fumbleDie3"></span>
+		<span id="critDie3"></span>
+		<span id="critTable3"></span>
+		   
+		   
+		<span id="melee3"></span>
+		 <span id="range3"></span>
+		
+		 <span id="speed3"></span>
+		
+		<p id="animalCharacter3"><span id="animal3"></span><span id="farmAnimal3"></span></p>
+		   
+		   <span id="ref3"></span>
+		   <span id="fort3"></span>
+		   <span id="will3"></span>
+		   
+		   <span id="init3"></span>
+		   
+		   
+		   <span id="wealth3"></span>
+		   <span id="raceAbilities3"></span>
+		   
+		   <span id="dieRollMethod3"></span>
+	   </aside>
+	   	   
+	</section>
+	
+
+		
+  <script>
+	  
+	  /*
+	  rollDice (numberOfSides, numberOfDiceRolled, numberOfDiceRemoved, baseValue)
+	  
+	  numberOfSides - represents how many sides that they die has (ie. d4, d5, d6)
+	  
+	  numberOfDiceRolled - represents the number of dice rolled
+	  
+	  numberOfDiceRemoved - represents the number of dice removed (ie. roll 4 d6 and drop the lowest). The die/dice with the lowest values will always be removed.
+	  
+	  baseValue - represents the base value that it added to the die rolls.  For instance, a base value of 6 is added to the rolls of 2D6, which is represented as 2D6+6 in game mechanics.
+	  */
+	  	function rollDice(numberOfSides, numberOfDiceRolled, numberOfDiceRemoved, baseValue) {
+		
+		if(numberOfSides === undefined || typeof numberOfSides !== 'number'||numberOfSides <=2 || numberOfSides >=30){
+			numberOfSides = 6;
+		}
+		
+		if(numberOfDiceRolled < 0){
+			numberOfDiceRolled =2;
+		}
+		
+		if(numberOfDiceRemoved === undefined || typeof numberOfDiceRemoved !== 'number'||numberOfDiceRemoved >= numberOfDiceRolled){
+			numberOfDiceRemoved =0;
+		}
+		
+		if(baseValue === undefined || typeof baseValue !== 'number'||baseValue < 0){
+			baseValue = 0;
+		}
+		
+		var numbers = [];
+		
+
+		for(var i = 0; i < numberOfDiceRolled; i++){
+			numbers[i] = Math.floor((Math.random() * 6) + 1);
+		}
+		
+        numbers.sort();
+        
+		var sum = baseValue;
+			
+		for(var i = numberOfDiceRemoved; i < numberOfDiceRolled; i++){
+			sum += numbers[i];
+		}
+			
+		return sum ;
+	}
+
+	  
+	/*
+	 Character() - Zero Level Character Constructor
+	*/
+	function Character() {
+	
+    var strength = rollDice(6, 4, 1, 0);
+    var agility = rollDice(6, 4, 1, 0);
+    var stamina = rollDice(6, 4, 1, 0);
+    var	personality = rollDice(6, 4, 1, 0);
+    var	intelligence = rollDice(6, 4, 1, 0);
+    var	luck = rollDice(6, 4, 1, 0);
+	var	occupation = getOccupation();
+	var birthAugur = getLuckySign();
+	var strengthModifier = getStrengthModifier(strength);
+	var staminaModifier = getStaminaModifier(stamina);
+	var agilityModifier = getAgilityModifier(agility);
+	var personalityModifier = getPersonalityModifier(personality);
+	var intelligenceModifier = getIntelligenceModifier(intelligence);
+	var armour = getArmour(occupation);
+	var armourProtection = getArmourProtection(armour);
+	var baseAC = getBaseArmourClass(agilityModifier)  + adjustAC(birthAugur, getLuckModifier(luck));
+		
+		var zeroLevelCharacter = {
+			"name": "",
+			"strength": strength,
+			"agility": agility,
+			"stamina": stamina,
+			"personality": personality,
+			"intelligence": intelligence,
+			"luck": luck,
+			"strengthModifier": strengthModifier,
+			"agilityModifier": agilityModifier,
+			"staminaModifier": staminaModifier,
+			"personalityModifier": personalityModifier,
+			"intelligenceModifier": intelligenceModifier,
+			"luckModifier":  getLuckModifier(luck),
+			"occupation":  occupation.occupation,
+			"trainedWeapon": occupation.trainedWeapon,
+			"trainedWeaponDamage": occupation.damage,
+			"tradeGoods": occupation.tradeGoods,
+			"startingEquipment": getStartingEquipment().equipment,
+			"luckySign": birthAugur.luckySign,
+			"luckyRoll": birthAugur.luckyRoll,
+			"luckySignBonus": getLuckModifier(luck),
+			"baseArmourClass": baseAC,
+			"armour": armour,
+			"modifiedArmourClass": baseAC + armourProtection,
+			"baseLanguages": getLanguages (occupation), 
+			"bonusLanguages": getBonusLanguages (intelligenceModifier, birthAugur, getLuckModifier(luck), occupation.race),
+			"hitPoints": 4 + staminaModifier + hitPointAdjustPerLevel(birthAugur,  getLuckModifier(luck)),
+			"fumbleDie": getFumbleDie (armour) + "" + addSign(adjustFumble(birthAugur, getLuckModifier(luck))),
+			"critDie": "d4" + addSign(adjustCrit(birthAugur, getLuckModifier(luck))),
+			"critTable": "I",
+			"melee": strengthModifier + meleeAdjust(birthAugur, getLuckModifier(luck)),
+			"range": agilityModifier + rangeAdjust(birthAugur, getLuckModifier(luck)),
+			"speed": 30 + addLuckToSpeed(birthAugur, getLuckModifier(luck)) + "'",
+			"animal": addAnimal (occupation),
+			"farmAnimal": hasFarmAnimal (occupation),
+			"ref": agilityModifier + adjustRef(birthAugur, getLuckModifier(luck)),
+			"fort": staminaModifier + adjustFort(birthAugur, getLuckModifier(luck)),
+			"will": personalityModifier + adjustWill(birthAugur, getLuckModifier(luck)),
+			"init": agilityModifier + adjustInit(birthAugur, getLuckModifier(luck)),
+			"wealth": Math.floor((Math.random() * 12)) + Math.floor((Math.random() * 12)) + Math.floor((Math.random() * 12)) + Math.floor((Math.random() * 12)) + Math.floor((Math.random() * 12)) + 5 + " cp",
+			"raceAbilities": addRaceAbilities (occupation),
+			"dieRollMethod": "Ability Scores: 4d6; max hp; tengu only"
+			
+		
+			
+
+		};
+	    if(zeroLevelCharacter.hitPoints <= 0 ){
+			zeroLevelCharacter.hitPoints = 1;
+		}
+		return zeroLevelCharacter;
+	  
+	  }
+	  
+
+
+    /*
+     getStrengthModifier(strength) - returns the Strength Modifier, which is based on the Strength Score
+    */
+    function getStrengthModifier(strength){
+        if(strength === undefined || typeof strength !== 'number'|| strength <=2 || strength >=19){
+            //invalid
+            return -3;
+        }
+		if(strength >=4 && strength <=5){
+			return -2;
+		}
+		else if(strength >=6 && strength <=8){
+			return -1;
+		}
+		else if(strength >=9 && strength <=12){
+			return + 0;
+		}
+		else if(strength >=13 && strength <=15){
+			return + 1;
+		}	
+		else if(strength >=16 && strength <=17){
+			return + 2;
+		}		
+		else if(strength ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+
+    /*
+    getAgilityModifier(agility) - returns the Agility Modifier, which is based on the Agility Score
+    */
+    function getAgilityModifier(agility){
+        if(agility === undefined || typeof agility !== 'number'|| agility <=2 || agility >=19){
+            //invalid
+            return -3;
+        }
+		if(agility >=4 && agility <=5){
+			return -2;
+		}
+		else if(agility >=6 && agility <=8){
+			return -1;
+		}
+		else if(agility >=9 && agility <=12){
+			return 0;
+		}
+		else if(agility >=13 && agility <=15){
+			return 1;
+		}	
+		else if(agility >=16 && agility <=17){
+			return 2;
+		}		
+		else if(agility ==18){
+			return 3;
+		}	
+		return -3;
+	}
+	  
+	/*
+    getStaminaModifier(stamina) - returns the Stamina Modifier, which is based on the Stamina Score
+    */
+	function getStaminaModifier(stamina){
+        if(stamina === undefined || typeof stamina !== 'number'|| stamina <=2 || stamina >=19){
+            //invalid
+            return -3;
+        }
+		if(stamina >=4 && stamina <=5){
+			return -2;
+		}
+		else if(stamina >=6 && stamina <=8){
+			return -1;
+		}
+		else if(stamina >=9 && stamina <=12){
+			return + 0;
+		}
+		else if(stamina >=13 && stamina <=15){
+			return + 1;
+		}	
+		else if(stamina >=16 && stamina <=17){
+			return + 2;
+		}		
+		else if(stamina ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+    /*
+    getPersonalityModifier(personality) - returns the Personality Modifier, which is based on the Personality Score
+    */
+	function getPersonalityModifier(personality){
+        if(personality === undefined || typeof personality !== 'number'|| personality <=2 || personality >=19){
+            //invalid
+            return -3;
+        }
+		if(personality >=4 && personality <=5){
+			return -2;
+		}
+		else if(personality >=6 && personality <=8){
+			return -1;
+		}
+		else if(personality >=9 && personality <=12){
+			return + 0;
+		}
+		else if(personality >=13 && personality <=15){
+			return + 1;
+		}	
+		else if(personality >=16 && personality <=17){
+			return + 2;
+		}		
+		else if(personality ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+    /*
+    getIntelligenceModifier(intelligence) - returns the Intelligence Modifier, which is based on the Intelligence Score 
+    */
+	function getIntelligenceModifier(intelligence){
+        if(intelligence === undefined || typeof intelligence !== 'number'|| intelligence <=2 || intelligence >=19){
+            //invalid
+            return -3;
+        }
+		if(intelligence >=4 && intelligence <=5){
+			return -2;
+		}
+		else if(intelligence >=6 && intelligence <=8){
+			return -1;
+		}
+		else if(intelligence >=9 && intelligence <=12){
+			return + 0;
+		}
+		else if(intelligence >=13 && intelligence <=15){
+			return + 1;
+		}	
+		else if(intelligence >=16 && intelligence <=17){
+			return + 2;
+		}		
+		else if(intelligence ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+
+    /*
+    getLuckModifier(luck) - returns the luck Modifier, which is based on the luck Score
+    */
+    function getLuckModifier(luck){
+        if(luck === undefined || typeof luck !== 'number'|| luck <=2 || luck >=19){
+            //invalid
+            return -3;
+        }
+		if(luck >=4 && luck <=5){
+			return -2;
+		}
+		else if(luck >=6 && luck <=8){
+			return -1;
+		}
+		else if(luck >=9 && luck <=12){
+			return + 0;
+		}
+		else if(luck >=13 && luck <=15){
+			return + 1;
+		}	
+		else if(luck >=16 && luck <=17){
+			return + 2;
+		}		
+		else if(luck ==18){
+			return + 3;
+		}	
+		return -3;
+	}
+	  
+//  getOccupation() - returns the Randomly Generated Occupation
+function getOccupation(){
+	var occupations = [
+		
+		{"occupation": "Tengu vagabond", "race": "Tengu", "trainedWeapon": "Stick (as club)", "damage": "1d4", "tradeGoods": "Bundle of ratty clothes"},
+		{"occupation": "Tengu urchin", "race": "Tengu", "trainedWeapon": "Stick (as club)", "damage": "1d4", "tradeGoods": "Begging bowl"},
+		{"occupation": "Tengu tea maker", "race": "Tengu", "trainedWeapon": "Knife (as dagger)", "damage": "1d4", "tradeGoods": "Jar of tea leaves"},
+		{"occupation": "Tengu gambler", "race": "Tengu", "trainedWeapon": "Dagger", "damage": "1d4", "tradeGoods": "Playing cards"},
+		{"occupation": "Tengu sake taster", "race": "Tengu", "trainedWeapon": "Wakazashi (short sword)", "damage": "1d6", "tradeGoods": "3 bottles of sake"},
+		{"occupation": "Tengu fisherman", "race": "Tengu", "trainedWeapon": "Knife (as dagger)", "damage": "1d4", "tradeGoods": "Fishing rod"},
+		{"occupation": "Tengu potter", "race": "Tengu", "trainedWeapon": "Staff", "damage": "1d4", "tradeGoods": "Clay pot"},
+		{"occupation": "Tengu tea merchant", "race": "Tengu", "trainedWeapon": "Dagger", "damage": "1d4", "tradeGoods": "Sack filled with tea leaves"},
+		{"occupation": "Tengu puppet maker", "race": "Tengu", "trainedWeapon": "Staff", "damage": "1d4", "tradeGoods": "3 puppets"},
+		{"occupation": "Tengu silk merchant", "race": "Tengu", "trainedWeapon": "Staff", "damage": "1d4", "tradeGoods": "Silk, 3 yards"}
+		];
+		return occupations[Math.floor(Math.random() * 10)]; 
+}
+	
+
+	  
+/*
+getStartingEquipment() - returns a randomly selected piece of starting equipment for the character
+*/
+function getStartingEquipment(){
+	var startingEquipment = [
+		{"equipment": "Backpack"},
+		{"equipment": "Candle"},
+		{"equipment": "Chain (10 feet)"},
+		{"equipment": "Chalk (1 piece)"},
+		{"equipment": "Chest (empty)"},
+		{"equipment": "Crowbar"},
+		{"equipment": "Flask (empty)"},
+		{"equipment": "Flint and Steel"},
+		{"equipment": "Grappling Hook"},
+		{"equipment": "Small hammer"},
+		{"equipment": "Holy Symbol"},
+		{"equipment": "Holy Water (1 vial)"},
+		{"equipment": "Iron Spike"},
+		{"equipment": "Lantern"},
+		{"equipment": "Mirror (hand size)"},
+		{"equipment": "Oil (1 flask)"},
+		{"equipment": "10 foot Pole"},
+		{"equipment": "Ration (1 day)"},
+		{"equipment": "Rope (50 feet)"},
+		{"equipment": "Sack (large)"},
+		{"equipment": "Sack (small)"},
+		{"equipment": "Thieves Tools"},
+		{"equipment": "Torch (1)"},
+		{"equipment": "Waterskin"}
+		];
+		return startingEquipment[Math.floor(Math.random() * 24)]; 
+}
+
+/*	  
+getLuckySign() - returns a randomly generated Lucky Sign 
+*/
+function getLuckySign(){
+    var luckySign = [
+        {"luckySign": "Harsh winter", "luckyRoll": "All attack rolls"},
+        {"luckySign": "The bull", "luckyRoll": "Melee attack rolls"},
+        {"luckySign": "Fortunate date", "luckyRoll": "Missle fire attack rolls"},
+        {"luckySign": "Raised by wolves", "luckyRoll": "Unarmed attack rolls"},
+        {"luckySign": "Conceived on horseback", "luckyRoll": "Mounted attack rolls"},
+        {"luckySign": "Born on the battlefield", "luckyRoll": "Damage rolls"},
+        {"luckySign": "Path of the bear", "luckyRoll": "Melee damage rolls"},
+        {"luckySign": "Hawkeye", "luckyRoll": "Missle damage rolls"},
+        {"luckySign": "Pack hunter", "luckyRoll": "Attack and damage rolls for 0-level starting weapon"},
+        {"luckySign": "Born under the loom", "luckyRoll": "Skill checks"},
+        {"luckySign": "Fox's cunning", "luckyRoll": "Find/disable traps"},
+        {"luckySign": "Four-leafed clover", "luckyRoll": "Find secret doors"},
+        {"luckySign": "Seventh son", "luckyRoll": "Spell checks"},
+        {"luckySign": "The raging storm", "luckyRoll": "Spell damage"},
+        {"luckySign": "Righteous heart", "luckyRoll": "Turn unholy checks"},
+        {"luckySign": "Surived the plague", "luckyRoll": "Magical healing"},
+        {"luckySign": "Luck sign", "luckyRoll": "Saving throws"},
+        {"luckySign": "Guardian angel", "luckyRoll": "Saving throws to escape traps"},
+        {"luckySign": "Survived a spider bite", "luckyRoll": "Saving throws against poison"},
+        {"luckySign": "Struck by Lightning", "luckyRoll": "Reflex saving throws"},
+        {"luckySign": "Lived through famine", "luckyRoll": "Fortitude saving throws"},
+        {"luckySign": "Resisted temptation", "luckyRoll": "Will saving throws"},
+        {"luckySign": "Charmed house", "luckyRoll": "Armour class"},
+        {"luckySign": "Speed of the Cobra", "luckyRoll": "Initiative"},
+        {"luckySign": "Bountiful Harvest", "luckyRoll": "Hits points/each level"},
+        {"luckySign": "Warrior's arm", "luckyRoll": "Critical hit tables"},
+        {"luckySign": "Unholy house", "luckyRoll": "Corruption rolls"},
+        {"luckySign": "The Broken Star", "luckyRoll": "Fumbles"},
+        {"luckySign": "Birdsong", "luckyRoll": "Number of Languages"},
+        {"luckySign": "Wild child", "luckyRoll": "Speed"}
+    ];
+	
+     return luckySign[Math.floor(Math.random() * 30)]; 
+}
+
+/*
+getRandomFarmAnimal() returns a randomly generated farm animal for those with the farmer occupation
+*/
+function getRandomFarmAnimal(){
+	var farmAnimal = [
+		{"animal": "Hen: Init +2; Atk peck +0 melee (1): AC 11; HP 1; MV 30'; Act 1d20; SV Fort -2, Ref +2, Will +0; AL N"},
+		{"animal": "Sheep: Init +0; Atk ram +0 melee (1d2): AC 12; HP  "+  Math.floor((Math.random() * 6) + 1) + "; HD 1d6; MV 30'; Act 1d20; SV Fort +0, Ref +1, Will +0; AL N"},
+		{"animal": "Goat: Init +1; Atk ram +0 melee (1d3): AC 12; HP   "+  Math.floor((Math.random() * 6) + 1) + "; HD 1d6; MV 30'; Act 1d20; SV Fort +3, Ref +1, Will +2; AL N"},
+		{"animal": "Cow: Init -2; Atk ram +0 melee (1d4): AC 11; HP  "+  Math.floor((Math.random() * 15) + 3) + "; HD 2d8; MV 30'; Act 1d20; SV Fort +1, Ref -2, Will -2; AL N"},
+		{"animal": "Duck: Init +1; Atk bite -3 melee (1): AC 11; HP 1; MV 20', fly 30'; Act 1d20; SV Fort +0, Ref +1, Will -2; AL N"},
+		{"animal": "Goose: Init +0; Atk bite -2 melee (1): AC 11; HP 1; MV 20', fly 30'; Act 1d20; SV Fort +0, Ref +1, Will -2; AL N"},
+		{"animal": "Mule: Init -1; Atk bite -1 melee (1d2): AC 11; HP  "+  Math.floor((Math.random() * 15) + 3) + "; HD 2d8; MV 30'; Act 1d20; SV Fort +4, Ref +2, Will +2; AL N"}
+	  ];
+     return farmAnimal[Math.floor(Math.random() * 7)]; 
+}
+	  
+/*
+addBonusLanguages() - returns Randomly selected 0th Level Character Bonus Languages
+*/
+function addBonusLanguages() {
+	var bonusLanguages = [
+		{"language": "Alignment Tongue"},
+		{"language": "Koropokuru"},
+		{"language": "Elf"},
+		{"language": "Halfling"},
+		{"language": "Gnome"},
+		{"language": "Bugbear"},
+		{"language": "Goblin"},
+		{"language": "Gnoll"},
+		{"language": "Hobgolin"},
+		{"language": "Kobold"},
+		{"language": "Lizardman"},
+		{"language": "Minotaur"},
+		{"language": "Ogre"},
+		{"language": "Orc"},
+		{"language": "Troglodyte"},
+		{"language": "Giant"}
+			];
+    return bonusLanguages[Math.floor(Math.random() * 16)]; 
+}
+	  
+/*
+addCartContents() - returns Randomly selected pushcart contents for the Wainwright Occupation
+*/
+function addCartContents() {
+	var cartContents = [	  
+		{"contents": "Push Cart containing tomatoes"},
+		{"contents": "Push Cart containing nothing"},
+		{"contents": "Push Cart containing dirt"},
+		{"contents": "Push Cart containing straw"},
+		{"contents": "Push Cart containing rocks"},
+		{"contents": "Push Cart containing YOUR DEAD!!!"}
+	];
+    return cartContents[Math.floor(Math.random() * 6)]; 
+}
+	 	
+/*
+hitPointAdjustPerLevel (luckySign, luckModifier) - returns the additional/minus hit points
+the character received per level from their Stamina modifier and whether they have the Lucky Sign "Bountiful Harvest".
+*/
+	  
+function hitPointAdjustPerLevel (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign != undefined && luckySign.luckySign === "Bountiful Harvest"){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+
+/*
+ getBaseArmourClass(agilityModifier)- returns the base armour class of the character
+*/
+function getBaseArmourClass(agilityModifier){
+	var armourClass = 10;
+	baseArmourClass = armourClass + agilityModifier;
+	return baseArmourClass;
+}	  
+
+/*
+getArmour (occupations) - returns the armour of the character based on their occupation.	  
+*/
+function getArmour (occupations) {
+	var armour = "";
+	if (occupations.occupation === "Mercenary") {
+		armour = "Hide";
+	}
+	else if (occupations.occupation === "Outlaw") {
+		armour = "Leather";
+	}
+	else if (occupations.occupation === "Soldier") {
+		armour = "Shield";
+	}
+		return armour;
+}
+
+/*
+getArmourProtection (armour) - retuns the bonus to the base armour class that the armour provides.  
+*/
+function getArmourProtection (armour) {
+	var armourProtection = 0;
+	if (armour === "Hide") {
+		armourProtection = 3;
+	}
+	else if (armour === "Leather") {
+		armourProtection = 2;
+	}
+	else if (armour === "Shield") {
+		armourProtection = 1;
+	}
+	return armourProtection;
+}
+
+/*
+addModifierSign (modifier) adds a + sign to positive integers; use for ability modifiers, saving throws, etc.
+*/
+function addModifierSign (modifier) {
+	if(modifier >= 0 ) {
+		return "+" + modifier;
+	}
+	else {
+		return modifier;
+	}
+}
+	  
+/*	  
+getLanguages (occupations) - returns the characters base langugages based on race	  
+*/
+function getLanguages (occupations, bonusLanguages) {
+	if (occupations.race === "Tengu") {
+		return "Common, Tengu"; 
+		//return "Common, " + bonusLanguages.language = "Koropokuru";
+	}
+	else if (occupations.race === "Elf") {
+		return "Common, Elf";
+	}
+	else if (occupations.race === "Halfling") {
+		return "Common, Halfling";
+	}
+	else {
+		return "Common";
+	}
+	// if(occupations.race === "Koropokuru" || occupations.race === "Elf" || occupations.race === "Halfling")
+} 
+	  
+/*
+getBonusLanguages (intelligenceModifier, luckySign, luckModifier) - add randomly selected bonus languages base on the character's intelligence or if they have the Lucky Sign of Bird Song
+*/
+function getBonusLanguages (intelligenceModifier, luckySign, luckModifier, race) {
+	var bonusLanguages = 0;
+	if(bonusLanguages  != undefined && typeof bonusLanguages === 'number') {
+		bonusLanguages = intelligenceModifier;
+	}
+	else {
+		return "";
+	}
+	
+	if(luckySign != undefined && luckySign.luckySign === "Birdsong") {
+		bonusLanguages += luckModifier;
+	}
+	
+	if(bonusLanguages <=0) {
+		return "";
+	}
+	var result = ", " + addBonusLanguages().language, newLanguage = "";
+	
+	var bExtraBaseLangRace = false;
+	if(race === "Koropokuru" || race === "Elf" || race === "Halfling"){
+		bExtraBaseLangRace = true;
+	}
+	// loop
+	for(var i = 1; i < bonusLanguages; i++){
+		// 1) get a random lang
+		newLanguage = addBonusLanguages().language;
+		// 2) check the new lang is not repeative
+		if(result.indexOf(newLanguage) != -1 || (bExtraBaseLangRace && newLanguage == race)){
+			i--;
+			// if yes continue;
+			continue;
+		} else{
+			// if not, add the new lang into the result
+			result += ", " + newLanguage;
+		}
+
+	}
+	return result;
+}
+	  
+/*
+getFumbleDie (armour) - returns the fumble die type based on the armour the character is wearing
+*/
+function getFumbleDie (armour) {
+	var fumbleDie = "d4"; 
+	if (armour === "Leather" || armour === "Shield") {
+		fumbleDie = "d8"; 
+	}
+	else if (armour === "Hide") {
+		fumbleDie = "d12"; 
+	}
+	return fumbleDie;
+}
+	  
+/*
+meleeAdjust (luckySign, luckModifier) - adds bonus/penality to Melee attack based on whether the character possesses specific Lucky Signs
+*/
+function meleeAdjust (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Harsh winter"){
+        adjust = luckModifier;
+     }
+	else if (luckySign.luckySign != undefined && luckySign.luckySign === "The bull") {
+		adjust = luckModifier;
+	}
+	return adjust;
+}
+
+/*
+rangeAdjust (luckySign, luckModifier) - adds bonus/penality to Range attack based on whether the character possesses specific Lucky Signs
+*/	  
+function rangeAdjust (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Harsh winter" || luckySign.luckySign === "Fortunate date")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+	 
+/*
+getSpeed (occupations) returns the base speed of the character based on their race
+*/
+function getSpeed (occupations) {
+	var speed = 20;
+	if(occupations.race === "Human" || occupations.race === "Elf") {
+		speed = 30;
+	}
+	return speed;
+}
+
+/*
+ addLuckToSpeed (luckySign, luckModifier) adds bonuses to the character's speed if they have a positive Luck Modifier and the Lucky Sign of Wild Child
+*/
+function addLuckToSpeed (luckySign, luckModifier) {
+	var addSpeed = 0;
+	if (luckySign.luckySign != undefined && luckySign.luckySign === "Wild child" && luckModifier == 1){
+		addSpeed = 5;
+	}
+	else if (luckySign.luckySign != undefined && luckySign.luckySign === "Wild child" && luckModifier == 2){
+		addSpeed = 10;
+	}
+	else if (luckySign.luckySign != undefined && luckySign.luckySign === "Wild child" && luckModifier == 3){
+		addSpeed = 15;
+	}
+	return addSpeed;
+}
+
+/*
+addAnimal (occupations) - adds animal to the notes based on the Occupation of the Character
+*/
+function addAnimal (occupations) {
+	var animal = "";
+	if (occupations.occupation === "Dwarven Herder") {
+		animal = "Sow: Init +0; Atk bite +0 melee (1d3): AC 10; HP  "+  Math.floor((Math.random() * 10) + 3) + "; HD 2d6; MV 30'; Act 1d20; SV Fort +2, Ref -2, Will +0; AL N";
+	}
+	else if (occupations.occupation === "Animal Trainer") {
+		animal = "Pony: Init +1; Atk hoof -2 melee (1d2): AC 11; HP "+  Math.floor((Math.random() * 8) + 3) + "; HD 1d8+2; MV 40'; Act 1d20; SV Fort +2, Ref +3, Will -1; AL N";
+	}
+	else if (occupations.occupation === "Elven Falconer") {
+		animal = "Falcon: Init +3; Atk beak +1 melee (1d3): AC 13; HP "+  Math.floor((Math.random() * 3) + 1) + "; HD 1d3; MV 15', fly 40'; Act 1d20; SV Fort +0, Ref +3, Will +0; AL N";
+	}
+	else if (occupations.occupation === "Herder") {
+		animal = "Herding Dog: Init +1; Atk bite +1 melee (1d3): AC 11; HP  "+  Math.floor((Math.random() * 6) + 1) + "; HD 1d6; MV 30'; Act 1d20; SV Fort +1, Ref +1, Will +0; AL N";
+	}
+	else if (occupations.occupation === "Wainwright") {
+		animal = addCartContents().contents;
+	}
+	
+	return animal;
+}
+
+/*
+hasFarmAnimal (occupations) calls getRandomFarmAnimal() if the Occupation is Farmer
+*/
+function hasFarmAnimal (occupations) {
+	var farmAnimal = "";
+	if (occupations.trainedWeapon == "Pitchfork (as Spear)") {
+		farmAnimal = getRandomFarmAnimal().animal;
+	}
+	return farmAnimal;
+}
+
+/*
+adjustRef (luckySign, luckModifier) - add bonus/penality to Saving Throw based on Lucky Sign
+*/
+function adjustRef (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Luck sign" || luckySign.luckySign === "Struck by Lightning")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+	 
+/*
+adjustFort (luckySign, luckModifier) - add bonus/penality to Saving Throw based on Lucky Sign
+*/
+function adjustFort (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Luck sign" || luckySign.luckySign === "Lived through famine")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}
+	  
+/*
+adjustWill (luckySign, luckModifier) - add bonus/penality to Saving Throw based on Lucky Sign
+*/
+function adjustWill (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && (luckySign.luckySign === "Luck sign" || luckySign.luckySign === "Resisted temptation")){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	 
+	  
+/*
+adjustInit (luckySign, luckModifier) - add bonus/penality to Initiative based on Lucky Sign
+*/
+function adjustInit (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Speed of the Cobra"){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	
+
+	  
+/*
+adjustAC (luckySign, luckModifier) - add bonus/penality to AC based on Lucky Sign
+*/
+function adjustAC (luckySign, luckModifier) {
+   var adjust = 0;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Charmed house"){
+        adjust = luckModifier;
+     }
+	return adjust;
+}	
+	  
+/*
+adjustCrit (luckySign, luckModifier) - add bonus/penality to Crit based on Lucky Sign
+*/
+function adjustCrit (luckySign, luckModifier) {
+   var adjust = luckModifier * 1;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "Warrior's arm"){
+        adjust = luckModifier * 2;
+     }
+	return adjust;
+}	
+	  
+/*
+adjustFumble (luckySign, luckModifier) - add bonus/penality to Fumble based on Lucky Sign
+*/
+function adjustFumble  (luckySign, luckModifier) {
+   var adjust = luckModifier * -1;
+    if (luckySign.luckySign != undefined && luckySign.luckySign === "The Broken Star"){
+        adjust = luckModifier * -2;
+     }
+	return adjust;
+}	
+
+/*
+addRaceAbilities (occupations) - adds a special abilities designed if the character is a Koropokuru, elf or halfling
+*/
+function addRaceAbilities (occupations) {
+	var raceAbilities = "";
+	if (occupations.race === "Koropokuru") {
+		raceAbilities = "Special Abilities: Infravision (60'), sense fresh water, sling";
+	}	
+	else if (occupations.race === "Elf") {
+		raceAbilities = "Special Abilities: Infravision (60'), iron vulnerability, +4 bonus to detect secret doors";
+	}	
+	else if (occupations.race === "Halfling") {
+		raceAbilities = "Special Abilities: Infravision (30'),  two-weapon fighting, good luck charm";
+	}
+	return raceAbilities;
+}
+	  
+/*addSign (modifier) Adds a + sign to value if value is 1 or greater.  If value is 0, then a empty String "" is returned.
+*/
+function addSign (modifier) {
+	if(modifier > 0 ) {
+		return "+" + modifier;
+	}
+	else if(modifier === 0) {
+		return "";
+	}
+	else {
+		return modifier;
+	}
+}
+	  	  
+	  
+        var imgData = "images/dcc_four_sheets.png";
+        document.getElementById("character_sheet").src = imgData;
+        
+
+	  var data = [Character(),Character(),Character(),Character()];
+	  for(var index = 0; index < 4 ; index++){
+	  
+        document.getElementById("name" + index).innerHTML = data[index].name;
+	  
+        document.getElementById("strength" + index ).innerHTML = data[index].strength;
+        document.getElementById("strengthMod" + index ).innerHTML = addModifierSign(data[index].strengthModifier);
+	  
+        document.getElementById("agility" + index ).innerHTML = data[index].agility;
+        document.getElementById("agilityMod" + index ).innerHTML = addModifierSign(data[index].agilityModifier);
+	  
+        document.getElementById("stamina" + index ).innerHTML = data[index].stamina;
+	  	document.getElementById("staminaMod" + index ).innerHTML = addModifierSign(data[index].staminaModifier);
+	  
+        document.getElementById("personality" + index ).innerHTML = data[index].personality;
+        document.getElementById("personalityMod" + index ).innerHTML = addModifierSign(data[index].personalityModifier);
+	  
+        document.getElementById("intelligence" + index ).innerHTML = data[index].intelligence;
+        document.getElementById("intelligenceMod" + index ).innerHTML = addModifierSign(data[index].intelligenceModifier);
+	  
+        document.getElementById("luck" + index ).innerHTML = data[index].luck;
+        document.getElementById("luckMod" + index ).innerHTML = addModifierSign(data[index].luckModifier);
+	  
+        document.getElementById("occupation" + index ).innerHTML = data[index].occupation;
+	  	  
+        document.getElementById("trainedWeapon" + index ).innerHTML = data[index].trainedWeapon;
+        document.getElementById("trainedWeaponDamage" + index ).innerHTML = data[index].trainedWeaponDamage;
+	  	document.getElementById("tradeGoods" + index ).innerHTML = data[index].tradeGoods;
+	  	document.getElementById("startingEquipment" + index ).innerHTML = data[index].startingEquipment;
+	  
+	  	document.getElementById("luckySign" + index ).innerHTML = data[index].luckySign;
+	    document.getElementById("luckyRoll" + index ).innerHTML = data[index].luckyRoll;
+	  
+	  
+	    document.getElementById("luckySignBig" + index ).innerHTML = data[index].luckySign;
+	  
+	    document.getElementById("LuckySignBonus" + index ).innerHTML = addModifierSign(data[index].luckModifier);
+	 
+	   document.getElementById("hitPoints" + index ).innerHTML = data[index].hitPoints;
+	  
+	  
+	    document.getElementById("baseArmourClass" + index ).innerHTML = data[index].baseArmourClass;
+	    document.getElementById("armour" + index ).innerHTML = data[index].armour;
+	  
+	    document.getElementById("modifiedArmourClass" + index ).innerHTML = data[index].modifiedArmourClass;
+	  
+	    document.getElementById("baseLanguages" + index ).innerHTML = data[index].baseLanguages;
+	    document.getElementById("bonusLanguages" + index ).innerHTML = data[index].bonusLanguages;
+	  
+	  
+	    document.getElementById("fumbleDie" + index ).innerHTML = data[index].fumbleDie;
+	    document.getElementById("critDie" + index ).innerHTML = data[index].critDie;
+	    document.getElementById("critTable" + index ).innerHTML = data[index].critTable;
+	  
+	    document.getElementById("melee" + index ).innerHTML = addModifierSign(data[index].melee);
+	    document.getElementById("range" + index ).innerHTML = addModifierSign(data[index].range);
+	 
+	    document.getElementById("speed" + index ).innerHTML = data[index].speed;
+	  
+	  	document.getElementById("farmAnimal" + index ).innerHTML = data[index].farmAnimal;
+	  
+	    document.getElementById("animal" + index ).innerHTML = data[index].animal;
+	  
+	  	document.getElementById("ref" + index ).innerHTML = addModifierSign(data[index].ref); 
+	  	document.getElementById("fort" + index ).innerHTML = addModifierSign(data[index].fort); 
+	  	document.getElementById("will" + index ).innerHTML = addModifierSign(data[index].will);
+	  
+	  	document.getElementById("init" + index ).innerHTML = addModifierSign(data[index].init);
+	  
+	  	document.getElementById("wealth" + index ).innerHTML = data[index].wealth;
+	  	document.getElementById("raceAbilities" + index ).innerHTML = data[index].raceAbilities;
+	  
+	  	document.getElementById("dieRollMethod" + index ).innerHTML = data[index].dieRollMethod;
+	  
+	  }
+
+  </script>
+		
+	
+    
+</body>
+</html>
